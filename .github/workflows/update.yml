@@ -3,6 +3,10 @@ name: Update
 on:
   schedule:
     - cron: "0 14 * * *"
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "trying this out"
 
 jobs:
   update:
