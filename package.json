@@ -1,0 +1,14 @@
+{
+  "name": "content-reminder",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "repository": "git@github.com:colbyfayock/content-reminder.git",
+  "author": "Colby Fayock <hello@colbyfayock.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@sendgrid/mail": "^7.4.1",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1",
+    "xml2js": "^0.4.23"
+  }
+}
