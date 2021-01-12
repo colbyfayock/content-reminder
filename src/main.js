@@ -14,9 +14,27 @@ async function run() {
 
   // Get existing data
 
-  const contentRaw = await promiseToReadFile(PATH_TO_CONTENT);
-  const contentJson = JSON.parse(contentRaw) || {};
-  const { content } = contentJson;
+  let content;
+
+  try {
+    const contentRaw = await promiseToReadFile(PATH_TO_CONTENT);
+    const contentJson = JSON.parse(contentRaw) || {};
+    content = contentJson.content;
+  } catch(e) {
+    console.log('File missing or corrupted, starting from scratch.');
+    content = [];
+  }
+
+  // Determine if we're at the end of our current content cycle. If we are,
+  // refresh the source data
+
+  if ( content.length === 0 ) {
+    console.log('Content is empty, refreshing from source.');
+
+    const sourceData = await getSourceData();
+
+    content = shuffle(sourceData);
+  }
 
   // Grab an item from the top of the list
 
@@ -32,31 +50,17 @@ async function run() {
   message += "\r\n";
   message += "From " + update.source.title + " " + update.source.link
 
+  console.log(`Sharing content: ${update.title}`);
+
   sendMail({
     subject: `New Content to Share: ${update.title}`,
     message
-  })
-
-  console.log(`Sharing content: ${update.title}`);
-
-  // Determine if we're at the end of our current content cycle. If we are,
-  // refresh the source data to save
-
-  let contentToSave = content;
-
-  if ( contentToSave.length === 0 ) {
-    console.log('Content is empty, refreshing from source.');
-
-    const sourceData = await getSourceData();
-
-    contentToSave = shuffle(sourceData);
-  }
-
+  });
 
   // Construct our content cache and save it to the filesystem with any updates
 
   const fileData = {
-    content: contentToSave
+    content
   }
 
   await promiseToWriteFile(PATH_TO_CONTENT, JSON.stringify(fileData));
