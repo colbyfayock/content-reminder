@@ -21,6 +21,10 @@ jobs:
       - run: yarn install --frozen-lockfile
 
       - run: node src/main.js
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          MAIL_FROM: ${{ secrets.MAIL_FROM }}
         
       - uses: mikeal/publish-to-github-action@master
         env:
