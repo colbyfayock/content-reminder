@@ -121,6 +121,11 @@ async function getSourceData() {
           if ( pubDateTimestamp < filters.after ) return;
         }
 
+        if ( filters.before ) {
+          const pubDateTimestamp = pubDate && new Date(pubDate).getTime();
+          if ( pubDateTimestamp > filters.before ) return;
+        }
+
         content.push({
           title,
           link,
