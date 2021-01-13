@@ -6,7 +6,8 @@ const { promiseToWriteFile, promiseToReadFile } = require('./lib/files');
 const { sendMail } = require('./lib/mail');
 const { shuffle } = require('./lib/util');
 
-const { rss } = require('../sources');
+const sourcesRss = require('../sources-rss');
+const sourcesStatic = require('../sources-static');
 
 const PATH_TO_CONTENT = './data/content.json';
 
@@ -77,31 +78,56 @@ run();
 
 async function getSourceData() {
 
-  const content = [];
+  const content = [
+    ...sourcesStatic
+  ];
 
   // Fetch all of the RSS feed content
 
-  const feedsRss = await Promise.all(rss.map(async ({ url }) => {
+  const feedsWithRaw = await Promise.all(sourcesRss.map(async (feed) => {
+    const { url } = feed;
     const response = await fetch(url);
-    return await response.text();
+    const raw = await response.text();
+    return {
+      ...feed,
+      raw
+    }
   }));
 
-  const feedsJson = await Promise.all(feedsRss.map(async (feed) => {
-    return await promiseToConvertXmlToJson(feed)
+  const feedsWithJson = await Promise.all(feedsWithRaw.map(async (feed) => {
+    const { raw } = feed;
+    const json = await promiseToConvertXmlToJson(raw);
+    return {
+      ...feed,
+      json
+    }
   }));
 
-  feedsJson.forEach(({ rss } = {}) => {
+  feedsWithJson.forEach(({ json = {}, filters = {} }) => {
+    const { rss } = json;
+
     if ( !rss ) return;
 
     rss.channel.forEach(channel => {
       channel.item.forEach(item => {
+        const title = item.title && item.title[0];
+        const link = item.link && item.link[0];
+        const pubDate = item.pubDate && item.pubDate[0];
+        const sourceTitle = channel.title && channel.title[0];
+        const sourceLink = channel.link && channel.link[0];
+
+        if ( filters.after ) {
+          const pubDateTimestamp = pubDate && new Date(pubDate).getTime();
+          if ( pubDateTimestamp < filters.after ) return;
+        }
+
         content.push({
-          title: item.title[0],
-          link: item.link[0],
-          pubDate: item.pubDate[0],
+          title,
+          link,
+          pubDate,
           source: {
-            title: channel.title[0],
-            link: channel.link[0]
+            title: sourceTitle,
+            link: sourceLink
           }
         });
       });
