@@ -1,5 +1,32 @@
 const static = [
   
+  // Resources
+  
+  {
+    "title": "Jamstack Handbook",
+    "link": "https://jamstackhandbook.com/",
+    "source": {
+      "title": "Colby Fayock",
+      "link": "https://www.colbyfayock.com/"
+    }
+  },
+  {
+    "title": "50 Projects for React & the Static Web",
+    "link": "https://50reactprojects.com/",
+    "source": {
+      "title": "Colby Fayock",
+      "link": "https://www.colbyfayock.com/"
+    }
+  },
+  {
+    "title": "Journey to Dev",
+    "link": "https://journeyto.dev/",
+    "source": {
+      "title": "Colby Fayock",
+      "link": "https://www.colbyfayock.com/"
+    }
+  },
+  
   // egghead.io Courses
   
   {
@@ -37,22 +64,6 @@ const static = [
   {
     "title": "Create, Manage, and Test API Requests with Postman",
     "link": "https://egghead.io/playlists/create-manage-and-test-api-requests-with-postman-de1b?af=atzgap",
-    "source": {
-      "title": "egghead.io",
-      "link": "https://egghead.io/instructors/colby-fayock?af=atzgap"
-    }
-  },
-  {
-    "title": "Mapping with React Leaflet v2",
-    "link": "https://egghead.io/playlists/mapping-with-react-leaflet-e0e0?af=atzgap",
-    "source": {
-      "title": "egghead.io",
-      "link": "https://egghead.io/instructors/colby-fayock?af=atzgap"
-    }
-  },
-  {
-    "title": "Build Maps with React Leaflet v2",
-    "link": "https://egghead.io/courses/build-maps-with-react-leaflet?af=atzgap",
     "source": {
       "title": "egghead.io",
       "link": "https://egghead.io/instructors/colby-fayock?af=atzgap"
