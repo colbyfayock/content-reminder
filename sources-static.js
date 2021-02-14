@@ -1,4 +1,7 @@
 const static = [
+  
+  // egghead.io Courses
+  
   {
     "title": "Create a New Github Action to Automate Code Tasks with Javascript",
     "link": "https://egghead.io/playlists/create-a-new-github-action-to-automate-code-tasks-with-javascript-f1e9?af=atzgap",
@@ -50,6 +53,33 @@ const static = [
   {
     "title": "Build Maps with React Leaflet v2",
     "link": "https://egghead.io/courses/build-maps-with-react-leaflet?af=atzgap",
+    "source": {
+      "title": "egghead.io",
+      "link": "https://egghead.io/instructors/colby-fayock?af=atzgap"
+    }
+  },
+  
+  // External Articles
+  
+  {
+    "title": "New to Jamstack? Everything You Need to Know to Get Started",
+    "link": "https://snipcart.com/blog/jamstack",
+    "source": {
+      "title": "Snipcart",
+      "link": "https://snipcart.com/blog?author=7049"
+    }
+  },
+  {
+    "title": "E-Commerce for React Developers [w/ Next.js Shop Tutorial]",
+    "link": "https://snipcart.com/blog/react-ecommerce-tutorial",
+    "source": {
+      "title": "Snipcart",
+      "link": "https://snipcart.com/blog?author=7049"
+    }
+  },
+  {
+    "title": "Build a Content Management System for an E-commerce Store with Next.js and Sanity",
+    "link": "https://egghead.io/learn/ecommerce/build-a-content-management-system-for-an-e-commerce-store-with-nextjs-and-sanity?af=atzgap",
     "source": {
       "title": "egghead.io",
       "link": "https://egghead.io/instructors/colby-fayock?af=atzgap"
