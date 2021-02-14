@@ -7,6 +7,10 @@ const rss = [
     }
   },
   {
+    title: 'Space Jelly',
+    url: 'https://spacejelly.dev/feed.xml'
+  },
+  {
     title: 'freeCodeCamp News',
     url: 'https://www.freecodecamp.org/news/author/colbyfayock/rss/'
   },
